@@ -6,7 +6,7 @@
 - Axios
 - Redux
 - SCSS
-- Json-server а потом Firebase database
+- Json-server а потом Firebase 
 
 - Jest
 - Jest extended 
