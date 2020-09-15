@@ -1,4 +1,4 @@
-#Стек используеммыех технологий
+# Стек используеммыех технологий
 - React
 - React Hooks
 - React Thunk
@@ -8,6 +8,7 @@
 - SCSS
 - Json-server а потом Firebase 
 
+## Тесты
 - Jest
 - Jest extended 
 - Jest enzyme
