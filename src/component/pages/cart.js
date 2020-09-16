@@ -1,13 +1,10 @@
 import React from "react"
 
 import {Link} from "react-router-dom"
-import AppHeader from "../appHeader"
 
 
 const CartPage = () => {
     return (
-        <div className="wrapper">
-    <AppHeader/>
     <div className="content">
       <div className="container container--cart">
         <div className="cart">
@@ -274,7 +271,6 @@ const CartPage = () => {
         </div>
       </div>
     </div>
-  </div>
     )
 }
 
