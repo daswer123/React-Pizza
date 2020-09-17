@@ -43,8 +43,46 @@ const setCategory = (category) => {
     }
 }
 
+const chouseFilter = (filterName) => {
+    return dispath => {
+        switch (filterName){
+            case "rate" : 
+                dispath(filterByRate())
+                break
+            case "name" : 
+                dispath(filterByName())
+                break
+            case "price" : 
+                dispath(filterByPrice())
+                break
+            default:
+                dispath(filterByRate())
+        }
+}
+}
+
+const filterByRate = () => {
+    return {
+        type: "FILTER_BY_RATING"
+    }
+}
+
+const filterByName = () => {
+    return {
+        type: "FILTER_BY_NAME"
+    }
+}
+
+const filterByPrice = () => {
+    return {
+        type: "FILTER_BY_PRICE"
+    }
+}
+
 export {
     getPizza,
     addPizza,
-    setCategory
+    setCategory,
+    chouseFilter,
+    
 }

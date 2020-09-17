@@ -72,7 +72,7 @@ const Categories = ({category,setCategory,pizzas}) => {
 
 const mapStateToProps = (state) => {
   return {
-    pizzas : state.pizza,
+    pizzas : state.pizzaForCategory,
     category : state.category
   }
 }

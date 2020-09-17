@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 
 const PizzaItem = ({id,imageUrl,name,types,sizes,price,addPizza}) => {
 
-  const [typeState,setType] = useState(types[0]);
+  const [typeState,setType] = useState(0);
   const [sizeState,setSize] = useState(sizes[0]);
   const [priceState,setPrice] = useState(price);
   const [count,setCount] = useState(0)
-
 
   const PizzaType = () =>{
 
@@ -28,9 +27,21 @@ const PizzaItem = ({id,imageUrl,name,types,sizes,price,addPizza}) => {
           default:
             title = "Традиционное"
         }
-      
 
-      if(elem === typeState){
+        if (types.length === 1){
+          return <li 
+          className="active"
+          onClick={() => setType(elem)}
+          key={"type - "+name+elem}
+          >{title}</li>
+        }
+    
+
+      if (types.length === 1){
+        return;
+      }    
+
+      if (elem === typeState){
         return <li 
         className="active"
         onClick={() => setType(elem)}
@@ -45,6 +56,13 @@ const PizzaItem = ({id,imageUrl,name,types,sizes,price,addPizza}) => {
     }
 
     const PizzaSize = () => {
+
+
+
+      if(sizeState === 26 && sizes[0] !== 26){
+        setSize(sizes[0])
+      }
+
       return sizes.map( (elem) => {
 
         if(elem === sizeState){
@@ -52,18 +70,18 @@ const PizzaItem = ({id,imageUrl,name,types,sizes,price,addPizza}) => {
           className="active"
           onClick={() => setSize(elem)}
           key={"size - "+name+elem}
-          >{elem}</li>
+          >{elem} см. </li>
         }
       
         return (<li 
           onClick={() => setSize(elem)}
           key={"size - "+name+elem}
-          >{elem}</li>)
+          >{elem} см. </li>)
       })
     }
 
     function makeNewPrice(){
-      const newPrice =  Math.floor(price+(10*sizeState)+(100*typeState))
+      const newPrice =  Math.floor(price+(15*sizeState))
       if (priceState === newPrice){
         return priceState
       }

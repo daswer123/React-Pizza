@@ -3,8 +3,10 @@ import produce from "immer";
 
 const initialState = {
     pizza : [],
+    pizzaForCategory : [],
     order : [],
     category: 1,
+    sortedBy : "rate",
     loading : true,
 }
 const reducer = (state = initialState,action) => {
@@ -18,6 +20,7 @@ const reducer = (state = initialState,action) => {
            case "PIZZA_LOADED":
                draft.loading = false
                draft.pizza = action.payload
+               draft.pizzaForCategory = action.payload
                break
 
            case "PIZZA_ERROR":
@@ -41,6 +44,27 @@ const reducer = (state = initialState,action) => {
 
             case "SET_CATEGORY":
                 draft.category = action.payload
+                break
+
+            case "FILTER_BY_RATING":
+                draft.sortedBy = "rate"
+                draft.pizza = draft.pizza.sort((a,b) =>{
+                   return a.rating - b.rating
+                })
+                break
+            case "FILTER_BY_NAME":
+                draft.sortedBy = "name"
+                draft.pizza = draft.pizza.sort((a,b) =>{
+                    return a.name > b.name ? 1 : -1
+                })
+                break
+                
+            case "FILTER_BY_PRICE":
+                draft.sortedBy = "price"
+                draft.pizza = draft.pizza.sort((a,b) =>{
+                    return a.price - b.price
+                })
+                break
        }
     })
 }

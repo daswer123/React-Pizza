@@ -18,6 +18,8 @@ const PizzaList = ({pizzas,getPizza,category,loading}) => {
 
     const pizzaItems = () => {
 
+        let newPizzaArray = [...pizzas]
+
         function filterCategory(data){
             if (category === "all"){
                 return data
@@ -26,8 +28,7 @@ const PizzaList = ({pizzas,getPizza,category,loading}) => {
             return data.filter(elem => elem.category === category)
         }
 
-
-        const newPizzaArray = filterCategory(pizzas,category)
+        newPizzaArray = filterCategory(newPizzaArray)
 
         return newPizzaArray.map( (pizza,id) => {
             return (

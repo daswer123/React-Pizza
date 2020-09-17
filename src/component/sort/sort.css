@@ -1,0 +1,21 @@
+@keyframes rotateUp{
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(180deg);}
+}
+
+@keyframes rotateDown{
+    0% {transform: rotate(180deg);}
+    100% {transform: rotate(0deg);}
+}
+
+
+.rotate{
+    animation-name: rotateUp;
+    transform: rotate(180deg);
+    animation-duration: 0.5s;
+}
+
+.no-rotate{
+    animation-name: rotateDown;
+    animation-duration: 0.5s;
+}

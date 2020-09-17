@@ -4,6 +4,10 @@
 
 @import 'components/all';
 
+*{
+  transition: 0.5s;
+}
+
 body {
   background-color: $background;
 }
