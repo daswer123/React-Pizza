@@ -109,7 +109,8 @@ const minusOne = (item) =>{
 
 const createNewOrder = (order,allPrice) =>{
     return dispath => {
-        let newOrder = order.map(elem=>{
+        let newOrder ={
+        order : order.map(elem=>{
             return {
                 name :elem.name,
                 size : elem.size,
@@ -118,8 +119,10 @@ const createNewOrder = (order,allPrice) =>{
                 count : elem.count,
                 costs : elem.basePrice * elem.count
             }
-        })
-        newOrder.push(allPrice)
+        }),
+        totalPrice : allPrice,
+        id : Math.floor(Math.random()*10000)
+        }
         axios.post("http://localhost:3001/orders",newOrder)
         .then(result => {
             Swai.fire(

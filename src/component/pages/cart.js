@@ -156,7 +156,7 @@ const CartPage = ({totalPrice,order,removeOrderItem,clearAll,plusOne,minusOne,cr
               </Link>
               <div className="button pay-btn" onClick={() => {
                   createNewOrder(order,totalPrice)
-                  setTimeout(history.push("/"),1000)
+                  setTimeout(() => history.push("/"),1000)
                 }}>
                 <span>Оплатить сейчас</span>
               </div>

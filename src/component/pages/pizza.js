@@ -4,6 +4,8 @@ import Categories from "../categories/";
 import Sort from "../sort"
 import PizzaList from "../pizzaList"
 
+import "./pizza.css"
+
 
 
 const pizzaPage = () => {

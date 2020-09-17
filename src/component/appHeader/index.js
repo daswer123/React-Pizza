@@ -8,10 +8,13 @@ const AppHeader = ({total,counter}) => {
         <div className="container">
           <div className="header__logo">
             <img width="38" src="./img/pizza-logo.svg" alt="Pizza logo" />
+            <span>
             <Link to="/">
               <h1>React Pizza</h1>
               <p>самая вкусная пицца во вселенной</p>
             </Link>
+            <p className="copyright">Made by <a href="https://github.com/daswer123/React-Pizza">@Danil Boldyrev</a></p>
+            </span>
           </div>
           <div className="header__cart">
             <Link to="/cart" href="/cart.html" className="button button--cart">

@@ -14,10 +14,10 @@ const Categories = ({category,setCategory,pizzas}) => {
             title = "Вегетарианская"
             break
           case 3:
-              title = "Мясные"
+              title = "Гриль"
               break
           case 4:
-              title = "Вегетарианская"
+              title = "Острые"
               break
           default:
               title = "Закрытые"
@@ -55,16 +55,23 @@ const Categories = ({category,setCategory,pizzas}) => {
         return <li className="" onClick={() => setCategory("all")}>Все</li>
     }
 
+    const [showAdaptive,onShowAdaptive] = useState(false)
+
+    const adpativeMenu = () => {
+      if(showAdaptive){
+        return <ul className="adaptive-category">
+        {AllCategories()}
+        {categoryItems()}
+      </ul>
+      }
+    }
     return (
         <div className="categories">
-        <ul>
+        <button type="button" className="show-category" onClick={() => onShowAdaptive(!showAdaptive)}>Показать категории</button>
+        {adpativeMenu()}
+        <ul className="usually-category">
           {AllCategories()}
           {categoryItems()}
-          {/* <li>Мясные</li>
-          <li>Вегетарианская</li>
-          <li>Гриль</li>
-          <li>Острые</li>
-          <li>Закрытые</li> */}
         </ul>
       </div>
     )
