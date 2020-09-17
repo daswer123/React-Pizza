@@ -32,11 +32,19 @@ const getPizzaError = () => {
 const addPizza = (pizza) =>{
     return {
         type : "ADD_PIZZA",
-        pizza : pizza
+        payload : pizza
+    }
+}
+
+const setCategory = (category) => {
+    return {
+        type : "SET_CATEGORY",
+        payload : category
     }
 }
 
 export {
     getPizza,
-    addPizza
+    addPizza,
+    setCategory
 }

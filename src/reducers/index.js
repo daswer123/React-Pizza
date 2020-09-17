@@ -4,7 +4,8 @@ import produce from "immer";
 const initialState = {
     pizza : [],
     order : [],
-    loading : true
+    category: 1,
+    loading : true,
 }
 const reducer = (state = initialState,action) => {
     return produce(state,draft => {
@@ -25,21 +26,21 @@ const reducer = (state = initialState,action) => {
                break
 
            case "ADD_PIZZA":
-               console.log(action.pizza)
-               const {name,type,size} = action.pizza
+               console.log(action.payload)
+               const {name,type,size} = action.payload
                let index = state.order.findIndex(pizza => 
                 {return ( (pizza.name === name) && (pizza.type === type) && (pizza.size === size) )})
                
                 if (index !== -1){
-                    console.log("Hi")
                     draft.order[index].count += 1
                     break
                 }
 
-                console.log("hello")
-
-               draft.order.push(action.pizza)
+               draft.order.push(action.payload)
                break
+
+            case "SET_CATEGORY":
+                draft.category = action.payload
        }
     })
 }
