@@ -10,6 +10,14 @@
     cursor: pointer;
 }
 
+.loading{
+    width: 50%;
+    height: 50%;
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
 .copyright a{
     color: green;
 }

@@ -87,7 +87,7 @@ const CartPage = ({totalPrice,order,removeOrderItem,clearAll,plusOne,minusOne,cr
         <div className="content">
         <div className="container container--cart">
           <div className="cart cart--empty">
-            <h2>Корзина пустая <b>😕</b></h2>
+            <h2>Корзина пустая <span role="img" aria-label="sad-emoji">😕</span></h2>
             <p>
               Вероятней всего, вы не заказывали ещё пиццу.<br />
               Для того, чтобы заказать пиццу, перейди на главную страницу.
