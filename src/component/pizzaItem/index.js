@@ -9,12 +9,9 @@ const PizzaItem = ({id,imageUrl,name,types,sizes,price,addPizza}) => {
   const [priceState,setPrice] = useState(price);
   const [count,setCount] = useState(0)
 
-  const PizzaType = () =>{
-
-    return types.map( (elem,i) => {
-
-      let title = "";
-        switch (elem){
+  function transformType(type){
+    let title = "";
+        switch (type){
           case 0:
             title = "Традиционное"
             break
@@ -27,13 +24,19 @@ const PizzaItem = ({id,imageUrl,name,types,sizes,price,addPizza}) => {
           default:
             title = "Традиционное"
         }
+      return title
+  }
+  const PizzaType = () =>{
+
+    return types.map( (elem,i) => {
+
 
         if (types.length === 1){
           return <li 
           className="active"
           onClick={() => setType(elem)}
           key={"type - "+name+elem}
-          >{title}</li>
+          >{transformType(elem)}</li>
         }
     
 
@@ -46,12 +49,12 @@ const PizzaItem = ({id,imageUrl,name,types,sizes,price,addPizza}) => {
         className="active"
         onClick={() => setType(elem)}
         key={"type - "+name+elem}
-        >{title}</li>
+        >{transformType(elem)}</li>
       }
       return (<li 
         onClick={() => setType(elem)}
         key={"type - "+name+elem}
-        >{title}</li>)
+        >{transformType(elem)}</li>)
     })
     }
 
@@ -101,7 +104,7 @@ const PizzaItem = ({id,imageUrl,name,types,sizes,price,addPizza}) => {
         id : id,
         name : name,
         url : imageUrl,
-        type : typeState,
+        category : transformType(typeState),
         size : sizeState,
         basePrice : priceState,
         count : 1
@@ -131,7 +134,7 @@ const PizzaItem = ({id,imageUrl,name,types,sizes,price,addPizza}) => {
               </ul>
             </div>
             <div className="pizza-block__bottom">
-              <div className="pizza-block__price">от {makeNewPrice()} руб</div>
+              <div className="pizza-block__price">от {makeNewPrice()} ₽</div>
               <div className="button button--outline button--add" onClick={() => onAddPizza()}>
                 <svg
                   width="12"

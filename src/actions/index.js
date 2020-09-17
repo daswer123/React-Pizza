@@ -1,4 +1,5 @@
 import axios from "axios"
+import Swai from "sweetalert2"
 
 const getPizza = () => {
     return dispath => {
@@ -79,10 +80,73 @@ const filterByPrice = () => {
     }
 }
 
+const removeOrderItem = (item) =>{
+    return {
+        type: "REMOVE_ORDER_ITEM",
+        payload : item
+    }
+}
+
+const clearAll = () => {
+    return{
+        type : "CLEAR_CART"
+    }
+}
+
+const plusOne = (item) =>{
+    return {
+        type : "PLUS_ITEM",
+        payload : item
+    }
+}
+
+const minusOne = (item) =>{
+    return {
+        type : "MINUS_ITEM",
+        payload : item
+    }
+}
+
+const createNewOrder = (order,allPrice) =>{
+    return dispath => {
+        let newOrder = order.map(elem=>{
+            return {
+                name :elem.name,
+                size : elem.size,
+                category : elem.category,
+                price : elem.basePrice,
+                count : elem.count,
+                costs : elem.basePrice * elem.count
+            }
+        })
+        newOrder.push(allPrice)
+        axios.post("http://localhost:3001/orders",newOrder)
+        .then(result => {
+            Swai.fire(
+                'Успешно!',
+                'Мы успешно получили ваш заказ и уже начали его готовить!',
+                'success'
+              )
+            dispath(clearAll())
+        })
+        .catch(err => Swai.fire(
+            'Ошибка!',
+            'К сожалению мы не смогли получить ваш заказ, попробуйте снова!',
+            'error'
+          ))
+    }
+    
+}
+
 export {
     getPizza,
     addPizza,
     setCategory,
     chouseFilter,
+    removeOrderItem,
+    clearAll,
+    plusOne,
+    minusOne,
+    createNewOrder
     
 }

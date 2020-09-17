@@ -1,8 +1,8 @@
 import React from "react";
-
+import { connect } from "react-redux"
 import {Link} from "react-router-dom"
 
-const AppHeader = () => {
+const AppHeader = ({total,counter}) => {
     return(
         <div className="header">
         <div className="container">
@@ -15,7 +15,7 @@ const AppHeader = () => {
           </div>
           <div className="header__cart">
             <Link to="/cart" href="/cart.html" className="button button--cart">
-              <span>520 ₽</span>
+              <span>{total} ₽</span>
               <div className="button__delimiter"></div>
               <svg
                 width="18"
@@ -46,7 +46,7 @@ const AppHeader = () => {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span>3</span>
+              <span>{counter}</span>
             </Link>
           </div>
         </div>
@@ -54,4 +54,11 @@ const AppHeader = () => {
     )
 }
 
-export default AppHeader
+const mapStateToProps = (state) =>{
+  return {
+    counter : state.order.length,
+    total : state.totalPrice
+  }
+}
+
+export default connect(mapStateToProps)(AppHeader)

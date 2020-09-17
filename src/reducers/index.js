@@ -5,7 +5,8 @@ const initialState = {
     pizza : [],
     pizzaForCategory : [],
     order : [],
-    category: 1,
+    totalPrice : 0,
+    category: "all",
     sortedBy : "rate",
     loading : true,
 }
@@ -29,7 +30,7 @@ const reducer = (state = initialState,action) => {
                break
 
            case "ADD_PIZZA":
-               console.log(action.payload)
+               draft.totalPrice += action.payload.basePrice
                const {name,type,size} = action.payload
                let index = state.order.findIndex(pizza => 
                 {return ( (pizza.name === name) && (pizza.type === type) && (pizza.size === size) )})
@@ -64,6 +65,43 @@ const reducer = (state = initialState,action) => {
                 draft.pizza = draft.pizza.sort((a,b) =>{
                     return a.price - b.price
                 })
+                break
+
+            case "REMOVE_ORDER_ITEM":
+                const delItem = action.payload;
+                let itemIndex = state.order.findIndex(pizza => 
+                    {return ( (pizza.name === delItem.name) && (pizza.type === delItem.type) && (pizza.size === delItem.size) )})
+                
+                draft.totalPrice -= delItem.basePrice * delItem.count
+                draft.order = [
+                    ...state.order.slice(0,itemIndex),
+                    ...state.order.slice(itemIndex+1)
+                ]
+
+                break
+
+            case "CLEAR_CART":
+                draft.totalPrice = 0
+                draft.order = []
+
+                break
+
+            case "PLUS_ITEM":
+                const plusItem = action.payload
+                const plusItemIndex = state.order.findIndex(pizza => 
+                    {return ( (pizza.name === plusItem.name) && (pizza.type === plusItem.type) && (pizza.size === plusItem.size) )})
+                
+                draft.order[plusItemIndex].count += 1
+                draft.totalPrice += plusItem.basePrice
+                break
+            
+            case "MINUS_ITEM":
+                const minusItem = action.payload
+                const minusItemIndex = state.order.findIndex(pizza => 
+                    {return ( (pizza.name === minusItem.name) && (pizza.type === minusItem.type) && (pizza.size === minusItem.size) )})
+                
+                draft.order[minusItemIndex].count -= 1
+                draft.totalPrice -= minusItem.basePrice
                 break
        }
     })
