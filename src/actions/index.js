@@ -28,8 +28,6 @@ const getPizza = () => {
         })
         .then(result => {
             result = result.val()
-            console.log(typeof(result))
-            console.log(result)
             if (typeof(result) == "null" || typeof(result) == "undefined"){
                 dispath(getPizzaLoaded([]))
             } else {

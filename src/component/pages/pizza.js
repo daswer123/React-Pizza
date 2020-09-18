@@ -13,7 +13,6 @@ import "./pizza.css"
 const pizzaPage = ({pizza,getPizza}) => {
 
   const contentView = () => {
-    console.log(pizza)
     if (pizza.length === 0){
       getPizza();
       return  <img src={loading} alt="eat" className="loading"/>
