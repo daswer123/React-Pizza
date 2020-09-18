@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { addPizza } from "../../actions"
 import { connect } from "react-redux";
 
-const PizzaItem = ({id,imageUrl,name,types,sizes,price,addPizza}) => {
+const PizzaItem = ({id,imageUrl,name,types,sizes,price,addPizza,category}) => {
 
   const [typeState,setType] = useState(0);
   const [sizeState,setSize] = useState(sizes[0]);
@@ -19,7 +19,7 @@ const PizzaItem = ({id,imageUrl,name,types,sizes,price,addPizza}) => {
             title = "Тонкое"
             break
           case 2:
-            title = "СуперТонкое"
+            title = "Супертонкое"
             break
           default:
             title = "Традиционное"
@@ -113,10 +113,13 @@ const PizzaItem = ({id,imageUrl,name,types,sizes,price,addPizza}) => {
       setCount(count+1)
       addPizza(pizza)
     }
-
+    let className = "pizza-block";
+    if (category === 5){
+      className+=" closed";
+    }
   return (
         <>
-          <div className="pizza-block">
+          <div className={className}>
             <img
               className="pizza-block__image"
               src={imageUrl}

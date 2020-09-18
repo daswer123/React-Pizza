@@ -1,5 +1,5 @@
 import React from "react";
-import {Route} from "react-router-dom"
+import {Route, Switch} from "react-router-dom"
 import AppHeader from "../appHeader";
 
 import {CartPage,PizzaPage} from "../pages"
@@ -9,8 +9,10 @@ const App = () => {
     return (
         <div className="wrapper">
             <AppHeader/>
-            <Route path="/" exact component={PizzaPage}/>
-            <Route path="/cart" exact component={CartPage}/>
+            <Switch>
+                <Route path="/cart" exact component={CartPage}/>
+                <Route component={PizzaPage}/>
+            </Switch>
         </div>
     )
 }

@@ -171,6 +171,7 @@ const createNewOrder = (order,allPrice) =>{
     
 }
 
+
 export {
     getPizza,
     addPizza,
@@ -180,6 +181,6 @@ export {
     clearAll,
     plusOne,
     minusOne,
-    createNewOrder
+    createNewOrder,
     
 }
