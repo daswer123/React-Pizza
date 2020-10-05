@@ -1,4 +1,4 @@
-Проект вы можете посмотреть здесь: [TODO](https://todoapp-d8181.web.app/)
+Проект вы можете посмотреть здесь: [Pizza](https://react-pizza-dev.web.app/)
 
 # Что это за проект
 [![Pc-Pizza](https://imgur.com/Ruwma6g.jpg)]()
